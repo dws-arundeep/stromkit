@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en" class="text-center">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>DMAlert | Instagram DM automation</title>
+    <meta name="description" content="Instagram DM automation">
+    <meta name="theme-color" content="#0d296b">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://dmalert.com/favicon.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content="DMAlert | Instagram DM automation">
+    <meta property="og:description" content="Instagram DM automation">
+    <meta property="og:image" content="https://drive.google.com/uc?export=view&id=1MvMNFcpPXXV4qh2fcbbU2lsvALzrNgfK">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" as="image" href="https://drive.google.com/uc?export=view&id=1MvMNFcpPXXV4qh2fcbbU2lsvALzrNgfK">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    
+    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <style>
+    /* Ensure visually-hidden works even if Bootstrap CSS fails to load */
+    .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    :root {
+        --brand:#0d296b;
+        --brand-600:#0b235b;
+        --ink:#0f172a;
+        --surface:#f7f9fc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        margin-top: 0;
+        font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background-color: #0e0e0e;
+        color: var(--ink);
+    }
+
+    .hero-title, h1, h2, h3 {
+        font-family: "Playfair Display", serif;
+        letter-spacing: .2px;
+    }
+    .hero-title { font-size: clamp(2.6rem, 6vw, 4rem); }
+    h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+
+    a.inline-link { text-decoration: underline; text-underline-offset: 3px; }
+
+    #mainHeader {
+        position: fixed; top: 0; right: 0; left: 0; z-index: 2000;
+        background: rgba(13,41,107,0);
+        transition: background-color .3s ease, box-shadow .3s ease, backdrop-filter .3s ease, border-color .3s ease;
+        border-bottom: 1px solid transparent;
+    }
+    #mainHeader.scrolled {
+        background: rgba(13,41,107,.65);
+        box-shadow: 0 6px 18px rgba(0,0,0,.25);
+        backdrop-filter: saturate(140%) blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+
+    .hero-section { padding-top: 100px; position: relative; color: #fff; overflow: hidden; min-height: 400px; }
+    .hero-section::before {
+        content:""; position:absolute; inset:0;
+        background: radial-gradient(1200px 600px at 60% 20%, rgba(255,255,255,.07), transparent 60%),
+                   linear-gradient(to bottom, rgba(0,0,0,.32), rgba(0,0,0,.52));
+        pointer-events:none;
+    }
+    .hero-title { font-weight: 700; margin-bottom: .5rem; text-shadow: 0 2px 18px rgba(0,0,0,.28); }
+
+    .accent { position: relative; display: inline-block; padding-bottom: .25rem; }
+    .accent::after {
+        content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: -12px;
+        width: 72px; height: 2px; border-radius: 999px;
+        background: linear-gradient(90deg, rgba(255,255,255,.0) 0%, #ffffff 50%, rgba(255,255,255,.0) 100%);
+        opacity: .95;
+    }
+    .accent-dark::after {
+        background: linear-gradient(90deg, rgba(13,41,107,0) 0%, var(--brand) 50%, rgba(13,41,107,0) 100%);
+    }
+
+    .section-wrap { padding: 2rem; position:relative; }
+    .section-inner { max-width: 70ch; margin: 0 auto; text-align: left; }
+    .prose p {
+        font-size: 1.05rem; line-height: 1.9; letter-spacing: .01em; margin-bottom: 1.15rem;
+        color: #0f0f10; text-align: justify;
+    }
+    .section-wrap:not(:first-child)::before {
+        content:""; position:absolute; top:-1.5rem; left:0; right:0; height:1px;
+        background: linear-gradient(90deg, transparent, rgba(13,41,107,.12), transparent);
+    }
+
+    .figure { border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 22px rgba(0,0,0,.15); }
+    .figure img { display: block; width: 100%; height: auto; transition: transform .28s ease; }
+    .figure:hover img { transform: scale(1.015); }
+
+    .btn-ghost {
+        display: inline-flex; align-items: center; gap: .6rem;
+        padding: .68rem 1.15rem; border: 1px solid rgba(255,255,255,.85); color: #fff;
+        background: rgba(255,255,255,.085); border-radius: 999px;
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        box-shadow: 0 10px 28px rgba(0,0,0,.25); text-decoration: none; font-weight: 600; letter-spacing: .02em;
+        transition: transform .15s ease, background .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.15); border-color: #ffffff; transform: translateY(-1px); box-shadow: 0 12px 28px rgba(0,0,0,.32); }
+    .btn-ghost i { transition: transform .18s ease; }
+    .btn-ghost:hover i { transform: translateX(4px); }
+    .btn-ghost:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+    .btn-ghost:active { transform: translateY(0); }
+
+    #mainHeader a { color:#fff; text-decoration:none; }
+
+    .header-icon {
+        display:inline-flex; align-items:center; justify-content:center;
+        width:40px; height:40px; border-radius:999px; margin-left:.5rem;
+        color:#fff; text-decoration:none; outline-offset:2px;
+    }
+    .header-icon i { font-size:1.5rem; line-height:1; }
+    .header-icon:focus-visible { outline:2px solid #fff; }
+    @media (hover:hover){ .header-icon:hover{ background: rgba(255,255,255,.12); } }
+
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .footer-link { text-decoration: none; }
+    .footer-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    footer { position: relative; background: #0c0c0c; }
+    footer::before {
+        content:""; position:absolute; top:0; left:0; right:0; height:2px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent); opacity:.6;
+    }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    #services { scroll-margin-top: 110px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal, .figure img, .btn-ghost, .accent::after { transition: none; animation: none; }
+        html { scroll-behavior: auto; }
+    }
+
+    #backToTop { position: fixed; right: 16px; bottom: 16px; z-index: 1040; display: none; }
+    </style>
+</head>
+<body class="bg-dark text-dark">
+
+    <header id="mainHeader" class="text-white py-3 d-flex align-items-center">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="text-start mb-0">
+                <a href="#" class="text-white text-decoration-none" aria-label="Instagram DM automation home">Instagram DM automation</a>
+            </h1>
+            <div><a href="https://x.com/dmalerthq" class="header-icon" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="bi bi-twitter" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a></div>
+        </div>
+    </header>
+
+    <section class="hero-section"
+             style="background-image: url('https://drive.google.com/uc?export=view&id=1MvMNFcpPXXV4qh2fcbbU2lsvALzrNgfK'); background-size: cover; background-position: center; height: 100vh; position: relative;">
+      <div class="container hero-content"
+           style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; color: white;">
+        <div class="d-flex flex-column align-items-center text-center">
+          <h2 class="hero-title accent mb-3">DMAlert</h2>
+          <a href="#services" class="btn-ghost" role="button" aria-label="Read more about services">
+            Read More <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <main style="background-color: #ffffff;">
+        <div class="container py-5" style="margin-top:0;">
+            <div id="services" class="row justify-content-center mb-5">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="section-wrap reveal">
+                        <h2 class="mb-4 text-center text-capitalize" style="font-weight: 700; color:var(--brand);">
+                            <span class="accent accent-dark">Automate Customer Chats With Precision</span>
+                        </h2>
+                        <div class="section-inner prose">
+                            <p>Organizations adopting <a href="https://dmalert.com" class="inline-link">Instagram DM automation</a> should begin with a narrow, documented purpose and a clear boundary for what the system may handle. A concise greeting can explain that a person is interacting with an automated service, while privacy-conscious settings limit data collection to information needed for the stated task. Accessible language, localized phrasing, and an easy way to request a human representative help the experience remain inclusive across audiences. Teams should also define retention and permission practices before connecting the workflow to other systems, so convenience does not come at the expense of trust. A review of Instagram DM automation can then confirm that the wording, consent notices, and data handling align with organizational standards.</p>
+                            <p>Quality improves when Instagram DM automation is treated as a maintained service rather than a one-time setup. Connectors should be tested against delayed replies, unsupported requests, account changes, and temporary outages, with safe fallback behavior whenever a system cannot verify an answer. A human handoff should preserve relevant context, identify the point of transfer, and let the representative continue without forcing the person to repeat everything. Regular sample reviews can uncover ambiguous wording, broken links, or outdated policy references before they affect a wider audience. Clear ownership for Instagram DM automation keeps revisions coordinated across marketing, operations, compliance, and support.</p>
+                            <p>Measurement should focus on outcomes that matter to both the organization and the people using the channel. Alongside response and completion rates, teams can examine opt-out patterns, transfer quality, error frequency, and whether users can complete a task without unnecessary repetition. Periodic audits of transcripts and permissions, conducted with appropriate safeguards, make it easier to refine prompts and retire steps that no longer serve a purpose. By treating Instagram DM automation as part of a broader customer-experience governance program, organizations can scale useful conversations while preserving accountability, transparency, and room for human judgment.</p>
+                            <figure class="figure mt-4">
+                                <img src="https://drive.google.com/uc?export=view&id=1kD7HVXAFrl_pxbrRNyFxhXRl5BUfhYgV" loading="lazy" decoding="async" alt="Instagram DM automation image">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="section-wrap reveal">
+                        <h2 class="mb-4 text-center text-capitalize" style="font-weight: 700; color: var(--brand);">
+                            <span class="accent accent-dark">Turn Audience Energy Into Dialogue</span>
+                        </h2>
+                        <div class="section-inner prose">
+                            <p>Automation works best when it reinforces the structure of a broader communication program rather than acting as a standalone feature. Instagram DM automation can coordinate message timing with an organization's publishing calendar, while Instagram DM automation can help maintain consistent terminology across related touchpoints. The result is an experience that feels integrated into the wider plan instead of added as an afterthought.</p>
+                            <div class="row align-items-center mb-4">
+                                <div class="col-md-6">
+                                    <p>The strongest programs are refined through controlled experimentation. Teams can vary creative treatments and timing patterns, then compare how each version affects attention and follow-through. Instagram DM automation makes these tests easier to coordinate, while Instagram DM automation can help identify the patterns worth carrying into future content.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ratio ratio-16x9 mx-auto" style="border-radius: 1rem; overflow: hidden; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);">
+                                        <iframe src="https://www.youtube.com/embed/omFXaTJeAvo?si=RNtIqYmgpFTJPbc3" loading="lazy" title="Instagram DM automation video" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Results deserve a broader lens than activity totals. Looking at completion and return behavior can show whether the experience is supporting meaningful progress, especially when those signals are considered alongside qualitative feedback. Instagram DM automation is most useful when paired with regular review, so teams can update the system while preserving sound judgment in situations that do not fit a standard pattern.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="section-wrap reveal">
+                        <h2 class="mb-4 text-center text-capitalize" style="font-weight: 700; color:var(--brand);">
+                            <span class="accent accent-dark">Convert Reactions Into Conversation Starters</span>
+                        </h2>
+                        <div class="section-inner prose">
+                            <p>Reactions to posts and stories can carry different levels of intent, from casual appreciation to a serious question. A thoughtful Instagram DM automation approach uses that context to select an opening that feels relevant, such as a request for a preferred format, a simple choice, or a reference to the content that drew attention. The message should be brief enough for mobile reading and specific enough to make replying easy. With Instagram DM automation, teams can compare which prompts earn useful responses without assuming that every reaction represents the same need.</p>
+                            <p>Context should remain visible throughout the exchange. Instagram DM automation can preserve the post, story, or product detail associated with an incoming message, helping the next response address what originally caught the person's attention. It is also useful to vary the pace and depth of follow-up questions: a quick clarification may suit a casual response, while a more considered inquiry may warrant space for a detailed answer. Reviewing actual exchanges can show where wording creates confusion, repeats information, or asks for more effort than the situation justifies. This makes Instagram DM automation a practical tool for refining message design rather than merely increasing volume.</p>
+                            <p>Useful evaluation should focus on the quality and continuity of responses, not only on how many people answer. Instagram DM automation can support reporting that connects the original reaction with later signals such as a completed request, a saved resource, or a return visit, giving teams evidence about which interactions create lasting value. Periodic review of response patterns also helps identify stale prompts, uneven treatment of similar situations, and moments when a person would benefit from a more flexible path. Over time, this discipline keeps direct messaging responsive, measured, and respectful of the audience's attention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8 reveal">
+                  <h2 class="mb-4 text-center text-capitalize" style="font-weight: 700; color:var(--brand);">
+                  <span class="accent accent-dark">
+                  <i class="bi bi-geo-alt" style="margin-right:.5rem;"></i>DMAlert</span>
+                  </h2>
+
+                    <div class="mb-4 ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3026.633710937155!2d77.0828839!3d28.5107055!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d195c4d9d2699%3A0x709c5b4077cd75b4!2s174%2C%20Udyog%20Vihar%20Phase%201%2C%20Udyog%20Vihar%2C%20Sector%2020%2C%20Gurugram%2C%20Haryana%20122016%2C%20India!5e1!3m2!1sen!2ses!4v1795604534907!5m2!1sen!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    </div>
+                    <p class="fw-bold" style="color: #000000;">DMAlert</p>
+                    <p style="color: #000000;">Plot No. 174, Udyog Vihar Phase-I, Gurugram, Haryana 122016, India</p>
+                    <p style="color: #000000;"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-white bg-dark mt-5">
+        <div class="container py-4 py-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column mb-4 mb-md-0 reveal">  <h3 class="fs-6 text-white section-title-sm">DMAlert</h3>  <ul class="list-unstyled">    <li><a class="link-light footer-link" href="Instagram-DM-automation.html" rel="noopener">Company Website</a></li>    <li><a class="link-light footer-link" href="https://dmalert.com" rel="noopener">https://dmalert.com</a></li>    <li><a class="link-light footer-link" href="" rel="noopener"></a></li>  </ul></div><div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column mb-4 mb-md-0 reveal">  <h3 class="fs-6 text-white section-title-sm">Useful Links</h3>  <ul class="list-unstyled">    <li><a class="link-light footer-link" href="" rel="noopener">Automate Customer Chats With Precision</a></li>    <li><a class="link-light footer-link" href="https://dmalert.com" rel="noopener">Turn Audience Energy Into Dialogue</a></li>    <li><a class="link-light footer-link" href="https://maps.app.goo.gl/VQo7UAW8LJt84nrD6" rel="noopener">Convert Reactions Into Conversation Starters</a></li>  </ul></div><div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column mb-4 mb-md-0 reveal">  <h3 class="fs-6 text-white section-title-sm">Follow us on Social Media</h3>  <ul class="list-unstyled">    <li><a class="link-light footer-link" href="https://x.com/dmalerthq" rel="noopener">Twitter</a></li>    <li><a class="link-light footer-link" href="https://www.pinterest.com/dmalerthq/" rel="noopener">Pinterest</a></li>    <li><a class="link-light footer-link" href="" rel="noopener"></a></li>  </ul></div>
+            </div>
+            <div class="mt-4">
+                
+<section class="safe-news-wall" aria-label="Weather tomorrow November 26 forecast: IMD issues dense fog warning for Delhi, Haryana, Punjab; heavy rain al - India.com">
+  <style>
+    .safe-news-wall { background:#f4f4f6; color:#333; padding:18px 12px 24px; border-radius:2px; }
+    .safe-news-wall h2 { margin:0 0 16px; color:#111; text-align:center; font-family:Arial, sans-serif; font-size:28px; line-height:1.2; font-weight:400; }
+    .safe-news-grid { column-count:4; column-gap:14px; }
+    .safe-news-card { display:inline-block; width:100%; break-inside:avoid; margin:0 0 14px; padding:18px; background:#fff; border:1px solid #ddd; border-radius:4px; color:#333; text-align:left; text-decoration:none; box-sizing:border-box; }
+    .safe-news-card:hover { color:#333; text-decoration:none; box-shadow:0 4px 16px rgba(66,66,66,.16); }
+    .safe-news-card h3 { margin:0 0 14px; color:#333; font-family:Arial, sans-serif; font-size:24px; line-height:1.25; font-weight:700; letter-spacing:0; }
+    .safe-news-card img { display:block; width:100%; height:auto; margin:0 0 14px; object-fit:cover; }
+    .safe-news-card p { margin:0 0 16px; color:#444; font-family:Arial, sans-serif; font-size:18px; line-height:1.55; }
+    .safe-news-meta { color:#8396a8; font-family:Arial, sans-serif; font-size:15px; line-height:1.4; }
+    @media (max-width: 1100px) { .safe-news-grid { column-count:3; } }
+    @media (max-width: 800px) { .safe-news-grid { column-count:2; } }
+    @media (max-width: 560px) { .safe-news-grid { column-count:1; } .safe-news-wall h2 { font-size:24px; } .safe-news-card h3 { font-size:21px; } }
+  </style>
+  <h2>Weather tomorrow November 26 forecast: IMD issues dense fog warning for Delhi, Haryana, Punjab; heavy rain al - India.com</h2>
+  <div class="safe-news-grid">
+    <a class="safe-news-card" href="https://kmsnews.org/kms/2026/11/26/indian-police-commando-killed-on-delhi-jammu-highway-in-haryana.html" target="_blank" rel="noopener noreferrer"><h3>Indian Police commando killed on Delhi-Jammu highway in Haryana</h3><img src="https://kmsnews.org/kms/assests/2026/06/Accident-2.jpeg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Srinagar : An Indian police commando was killed and another critically injured after an unidentified vehicle hit them on the Delhi-Jammu highway in the BJP-ruled Haryana state. According to Kashmir Media Service, the deceased was identified as Selection Grade Constable Shabaz Ahmad, a resident of Thanamandi in Rajouri district. The injured cop was identified as …</p><div class="safe-news-meta">kmsnews.org - 3h</div></a><a class="safe-news-card" href="https://indianexpress.com/article/cities/chandigarh/rohtak-dhaba-firing-four-men-killed-gang-rivalry-10979081/" target="_blank" rel="noopener noreferrer"><h3>4 shot dead in suspected gang war at Haryana dhaba; 1 killed by mistake</h3><img src="https://images.indianexpress.com/2026/11/Rohtak-firing.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Three of the deceased were associated with Sunny Ritoliya, while the fourth, a resident of Beri, was allegedly mistaken for one of their associates.</p><div class="safe-news-meta">indianexpress.com - 4h</div></a><a class="safe-news-card" href="https://indianexpress.com/article/cities/chandigarh/yogender-yogi-aicc-secretary-congress-journey-10979054/" target="_blank" rel="noopener noreferrer"><h3>From filling quilts at flour mill to AICC secretary: Tracing Yogender Yogi’s rise</h3><img src="https://images.indianexpress.com/2026/11/AICC-Yogi.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Yogender Yogi, from Mujadpur village in Haryana, has been appointed AICC secretary and named co-incharge of Maharashtra as Congress expands grassroots representation.</p><div class="safe-news-meta">indianexpress.com - 4h</div></a><a class="safe-news-card" href="https://www.indiagazette.com/news/279454837/haryana-police-register-fir-after-four-killed-in-firing-at-dhaba-in-rohtak-gang-rivalry-angle-under-probe" target="_blank" rel="noopener noreferrer"><h3>Haryana: Police register FIR after four killed in firing at dhaba in Rohtak; gang rivalry angle under probe</h3><img src="https://chitra-api.kreatio.com/api/v1/wps/40908ad/6ddb047c-b333-4aa8-825e-c049f9b359bb/0/ANI-20261126043040-600x315.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Police have registered an FIR after four people were killed in a firing incident at a dhaba in Haryana&#x27;s Rohtak, Deputy Superintendent of Police (DSP) Rishi Kant said on Thursday. Speaking about the incident, Rishi Kant said some individuals arrived at the dhaba on Wednesday night and were fired upon, resulting in four deaths. &quot;Last night, some individuals arrived at a dhaba. They were fired upon, resulting in the death of four people. No one is injured,&quot; he said. The DSP said the process of identifying the accused was underway and multiple police teams had been assigned to the investigation. He added that efforts were being made to identify and arrest those involved. &quot;We have registered an FIR, and the process of identification is underway; the accused will soon be identified and arrested,&quot; he said. On the possibility of gang rivalry behind the incident, Rishi Kant said it was part of the investigation and that police expected a breakthrough soon. He also stated that no footage was available at the moment. &quot;Whether it is a gang war or not is a part of the investigation. We have assigned multiple teams to the case, and we expect to achieve a breakthrough soon. There is no footage available at the moment,&quot; he added. The assailants fled the scene after the attack. Earlier, in a separate incident in Delhi, police apprehended a suspect, Satyendra, alias Sikandar, wanted in connection with a firing incident at a Paharganj bar, after he was injured in an exchange of fire in Sonia Vihar on Tuesday. He is the prime suspect in a firing incident that took place at a bar on Panchkuian Road in the Paharganj area. According to Delhi Police, the firing incident occurred at a bar on Panchkuian Road, Paharganj, and the accused, identified as Satinder alias Kanta, was allegedly involved in the incident. Following the firing, a team of Central District Police initiated an operation to trace and apprehend him. During the investigation, the police team traced the accused to Sonia Vihar, which falls under the North-East District of Delhi. The team then reached the area to arrest him. During the operation, an exchange of fire took place between the police team and the accused. In the exchange, the accused sustained a gunshot injury to his leg. He was immediately taken to a hospital for medical treatment, police said. Delhi Police confirmed that the accused had been arrested after the encounter and identified him as the prime suspect in the Paharganj bar firing case. (ANI)</p><div class="safe-news-meta">indiagazette.com - 8h</div></a><a class="safe-news-card" href="https://www.indiagazette.com/news/279454789/haryana-four-injured-in-firing-incident-near-dhaba-in-rohtak" target="_blank" rel="noopener noreferrer"><h3>Haryana: Four injured in firing incident near dhaba in Rohtak</h3><img src="https://chitra-api.kreatio.com/api/v1/wps/8203868/327b9685-076e-455a-9a6f-1aa8c3cf02e6/0/ANI-20261126033653-600x315.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Four people sustained injuries after a firing incident was reported near a dhaba in Haryana&#x27;s Rohtak. The incident took place late on Wednesday night. The assailants fled the scene after the attack. Further details regarding the incident are awaited. Earlier, in a separate incident in Delhi, police apprehended a suspect, Satyendra, alias Sikandar, wanted in connection with a firing incident at a Paharganj bar, after he was injured in an exchange of fire in Sonia Vihar on Tuesday. He is the prime suspect in a firing incident that took place at a bar on Panchkuian Road in the Paharganj area. According to Delhi Police, the firing incident occurred at a bar on Panchkuian Road, Paharganj, and the accused, identified as Satinder alias Kanta, was allegedly involved in the incident. Following the firing, a team of Central District Police initiated an operation to trace and apprehend him. During the investigation, the police team traced the accused to Sonia Vihar, which falls under the North-East District of Delhi. The team then reached the area to arrest him. During the operation, an exchange of fire took place between the police team and the accused. In the exchange, the accused sustained a gunshot injury to his leg. He was immediately taken to a hospital for medical treatment, police said. Delhi Police confirmed that the accused had been arrested after the encounter and identified him as the prime suspect in the Paharganj bar firing case. (ANI)</p><div class="safe-news-meta">indiagazette.com - 9h</div></a><a class="safe-news-card" href="https://www.indiatoday.in/india/haryana/story/haryana-sarpanch-rejects-rs-11-lakh-dowry-accepts-re-1-shagun-3047050-2026-11-26" target="_blank" rel="noopener noreferrer"><h3>Haryana sarpanch rejects Rs 11 lakh dowry, accepts Rs 1 shagun</h3><img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/no-dowry-haryana-sarpanch-25381921-16x9_0.png?VersionId=jrpv.qUkqCRWSngArWx6T.vvrUkRnsaA" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Vedpal Jangra&#x27;s family refused jewellery and Rs 11 lakh during his son&#x27;s lagan ceremony. The decision underscored their opposition to dowry and its financial burden on brides&#x27; families.</p><div class="safe-news-meta">indiatoday.in - 10h</div></a><a class="safe-news-card" href="https://indianexpress.com/article/cities/chandigarh/five-months-after-shifting-to-pnb-haryana-panchayat-accounts-face-rs-100-cr-cyber-fraud-8-held-10978738/" target="_blank" rel="noopener noreferrer"><h3>Five months after shifting to PNB, Haryana panchayat accounts face Rs 100-cr cyber fraud; 8 held</h3><img src="https://images.indianexpress.com/2026/11/pnb_20261125205126.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>The fraud first came to light when Rs 74.70 lakh was transferred through seven unauthorised transactions from the PNB accounts of seven panchayat institutions in different districts to a private company’s bank account in Noida on November 14 and 15.</p><div class="safe-news-meta">indianexpress.com - 12h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/haryana-leaders-welcome-guru-ravidas-yatra-at-kalanaur/" target="_blank" rel="noopener noreferrer"><h3>Haryana leaders welcome Guru Ravidas yatra at Kalanaur</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWZjNGY1ZWIwLWU5MGUtMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Samrasta Sankalp Yatra, being organised to mark the 650th birth anniversary year of Guru Ravidas, entered the state on Wednesday.</p><div class="safe-news-meta">tribuneindia.com - 12h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/private-schools-body-urges-haryana-government-to-clear-reimbursements/" target="_blank" rel="noopener noreferrer"><h3>Private schools’ body urges Haryana Government to clear reimbursements</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWQ2ZTFlYjIwLWU5MGUtMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>The National Independent Schools Alliance (NISA) has urged the Haryana Government to immediately release pending reimbursement amounts under Rule 134-A, RTE and the CHEERAG scheme.</p><div class="safe-news-meta">tribuneindia.com - 12h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/haryana-charuni-tikait-factions-of-bku-unite-for-protest-over-cane-price/" target="_blank" rel="noopener noreferrer"><h3>Haryana: Charuni, Tikait factions of BKU unite for protest over cane price</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYTY3YjZhYjIwLWU5MGMtMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>The Bharatiya Kisan Union (Charuni) and the BKU (Tikait) have joined hands to demand an increase in sugarcane prices to Rs 600 per quintal in Haryana.</p><div class="safe-news-meta">tribuneindia.com - 12h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/special-session-of-haryana-assembly-today-to-mark-constitution-day/" target="_blank" rel="noopener noreferrer"><h3>Special session of Haryana Assembly today to mark Constitution Day</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWQ2NDI1M2YwLWU5MDctMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>The Haryana Legislative Assembly will hold a special session on Thursday to mark Constitution Day, with a programme highlighting the making of the Constitution and the values enshrined in it.</p><div class="safe-news-meta">tribuneindia.com - 13h</div></a><a class="safe-news-card" href="https://dailysports.net/predictions/india-syed-mushtaq-ali-trophy-jammu-kashmir-vs-haryana-match-preview-odds-predictions/" target="_blank" rel="noopener noreferrer"><h3>India Syed Mushtaq Ali Trophy: Jammu &amp; Kashmir vs Haryana Match Preview Odds &amp; Predictions</h3><img src="https://cdn.dailysports.net/dailysports/20261125/4065ef93fae9d7f97ebc1743ae070a4ead0eef737fbf5262b777824512a1aea5-1200-675.webp" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Jammu &amp; Kashmir will lock horns with Haryana in the India Syed Mushtaq Ali Trophy on Thursday. Jammu &amp; Kashmir have won four of their last five games, while Haryana have won three of theirs. How</p><div class="safe-news-meta">dailysports.net - 15h</div></a><a class="safe-news-card" href="https://www.ndtv.com/india-news/haryana-chief-minister-faces-dummy-jibe-over-bjps-akali-pact-in-punjab-12377274" target="_blank" rel="noopener noreferrer"><h3>Haryana Chief Minister Nayab Saini Faces &#x27;Dummy&#x27; Jibe Over BJP&#x27;s Akali Pact In Punjab</h3><img src="https://c.ndtvimg.com/2026-11/b7pepiq4_nayab-saini_625x300_19_November_26.jpg?im=FeatureCrop,algorithm=dnn,width=1600,height=900" alt="" loading="lazy" referrerpolicy="no-referrer"><p>&quot;Till yesterday, he was claiming that the BJP would contest all 117 seats independently in Punjab. Now that the alliance has been formed, did anyone ask him about it?&quot; Abhay Chautala remarked on Nayab Saini.</p><div class="safe-news-meta">ndtv.com - 16h</div></a><a class="safe-news-card" href="https://government.economictimes.indiatimes.com/news/economy/haryana-cm-saini-to-lead-high-level-delegation-to-uk-germany-to-attract-investments/136166924" target="_blank" rel="noopener noreferrer"><h3>Haryana CM Saini to lead high-level delegation to UK, Germany to attract investments</h3><img src="https://etimg.etb2bimg.com/thumb/msid-136166924,imgsize-891690,width-1200,height=627,overlay-etgovernment,resizemode-75/news/economy/haryana-cm-saini-to-lead-high-level-delegation-to-uk-germany-to-attract-investments.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>During the visit, the delegation will hold extensive deliberations with leading global companies, investors, universities, research and technology institutions and representatives from various sectors.</p><div class="safe-news-meta">government.economictimes.indiatimes.com - 17h</div></a><a class="safe-news-card" href="https://thepublicworld.com/archives/121734" target="_blank" rel="noopener noreferrer"><h3>Haryana’s Neeti Chaudhary Wins Best Oral Presentation Award At E-MRS 2026 In Warsaw -</h3><img src="https://i0.wp.com/thepublicworld.com/wp-content/uploads/2026/11/Haryanas-Neeti-Chaudhary-Wins-Best-Oral-Presentation-Award-at-E-MRS-2026-in-Warsaw.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>The Public World - Researcher from Kaithal’s Bhana village recognised for work on nanomaterials and sustainable energy storage technology</p><div class="safe-news-meta">thepublicworld.com - 17h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/haryana-cracks-whip-on-power-theft-orders-immediate-disconnection-for-offenders/" target="_blank" rel="noopener noreferrer"><h3>Haryana cracks whip on power theft, orders immediate disconnection for offenders</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYTYwNzc4OTcwLWU4ZDktMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Haryana recovers Rs 140.72 crore in fines in 2026; officers told to give special importance to digital evidence during investigations</p><div class="safe-news-meta">tribuneindia.com - 18h</div></a><a class="safe-news-card" href="https://timesofindia.indiatimes.com/city/chandigarh/17-aadhaar-seva-kendras-operational-across-haryana-new-enrolment-free/articleshow/136163358.cms" target="_blank" rel="noopener noreferrer"><h3>17 Aadhaar Seva Kendras operational across Haryana, new enrolment free</h3><img src="https://static.toiimg.com/photo/msid-47529300/47529300.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>UIDAI opens 17 Aadhaar Seva Kendras across Haryana for enrolment and updates; fresh Aadhaar enrolment is free, charges apply for other services.</p><div class="safe-news-meta">timesofindia.indiatimes.com - 19h</div></a><a class="safe-news-card" href="https://www.tribuneindia.com/news/haryana/uidai-opens-17-aadhaar-seva-kendras-across-haryana-no-need-to-travel-to-chandigarh-for-routine-work/" target="_blank" rel="noopener noreferrer"><h3>UIDAI opens 17 Aadhaar Seva Kendras across Haryana, no need to travel to Chandigarh for routine work</h3><img src="https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYWNhNjYwMTQwLWU4YzUtMTFmMS05NjM3LTViY2YwYzFjMTk4YS5qcGc=" alt="" loading="lazy" referrerpolicy="no-referrer"><p>To improve citizen access to Aadhaar services, the Unique Identification Authority of India (UIDAI) has set up 17 Aadhaar Seva Kendras (ASKs) across Haryana, bringing enrolment and update services closer to people’s homes.</p><div class="safe-news-meta">tribuneindia.com - 21h</div></a><a class="safe-news-card" href="https://www.india.com/news/india/weather-tomorrow-november-26-forecast-imd-issues-dense-fog-warning-for-delhi-haryana-punjab-heavy-rain-alert-for-kerala-and-tamil-nadu-8547917/" target="_blank" rel="noopener noreferrer"><h3>Weather tomorrow November 26 forecast: IMD issues dense fog warning for Delhi, Haryana, Punjab; heavy rain</h3><img src="https://static.india.com/wp-content/uploads/2026/10/delhi-weather-.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>IMD issues heavy rain alert for Kerala and Tamil Nadu, thunderstorms in South India and dense fog warning for Delhi, Haryana, Punjab, Odisha and Northeast states.</p><div class="safe-news-meta">india.com - 21h</div></a><a class="safe-news-card" href="https://www.indianewscalling.com/news/193238-prof-pawan-kumar-sharma-assumes-charge-as-vice-chancellor-of-central-university-of-haryana.aspx" target="_blank" rel="noopener noreferrer"><h3>Prof. Pawan Kumar Sharma Assumes Charge as Vice-Chancellor of Central University of Haryana</h3><img src="https://www.indianewscalling.com/images/article/article193238.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Prof. Pawan Kumar Sharma Assumes Charge as Vice-Chancellor of Central University of Haryana</p><div class="safe-news-meta">indianewscalling.com - 22h</div></a><a class="safe-news-card" href="https://www.business-standard.com/finance/personal-finance/bihar-haryana-and-up-lead-india-s-company-boom-as-active-firms-grow-12-126112500639_1.html" target="_blank" rel="noopener noreferrer"><h3>Bihar, Haryana and UP lead India&#x27;s company boom as active firms grow 12%</h3><img src="https://bsmedia.business-standard.com/_media/bs/img/article/2026-11/22/thumb/featurecrop/1200X628/1795363499-4064.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Active companies in India grew 12% YoY in FY26, while new company registrations increased 37% YoY, reaching approximately 248,000 new companies.</p><div class="safe-news-meta">business-standard.com - 23h</div></a><a class="safe-news-card" href="https://www.indiagazette.com/news/279453998/inspired-by-beti-bachao-beti-padhao-safidon-to-celebrate-daughter-birth-with-grand-radha-ka-mangalotsav-on-november-29" target="_blank" rel="noopener noreferrer"><h3>Inspired by &#x27;Beti Bachao, Beti Padhao&#x27;, Safidon to Celebrate Daughter&#x27;s Birth with Grand &#x27;Radha Ka Mangalotsav&#x27; on November 29</h3><img src="https://chitra-api.kreatio.com/api/v1/wps/9dd0056/f84803bc-962b-4794-8709-def1016866ab/0/ANI-20261125125735-600x315.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Inspired by the vision of promoting respect and equality for daughters through the &#x27;Beti Bachao, Beti Padhao&#x27; campaign launched by Prime Minister Narendra Modi from Panipat in January 2015, Safidon is set to host a grand social celebration, &#x27;Radha Ka Mangalotsav&#x27;, on November 29. The event is being organised to celebrate the birth of Radha, daughter of Captain Yogesh Bairagi, Chairman of the Haryana State Social Welfare Board and former BJP candidate from the Julana Assembly constituency. Through this celebration, the family aims to share its happiness with society and promote the message that daughters deserve the same love, respect and celebrations as sons. More than 50,000 guests are expected to attend the event at Truck Union Ground, Jind Road, Ward No. 14, Safidon. Invitations are being extended to prominent political and social personalities, including Haryana Chief Minister Nayab Singh Saini, former Chief Minister Manohar Lal Khattar, Union and State Ministers, BJP leaders and revered saints from Haryana, Haridwar and the Braj region. The organisers are also reaching out to people across more than 150 villages and nearby towns, with guests expected from Delhi, Uttar Pradesh, Rajasthan, Madhya Pradesh, Chhattisgarh, Punjab and Maharashtra. Extensive arrangements are being made for the celebration, including a grand tent spread across four acres and parking facilities across five acres. More than 500 volunteers, over 1,000 waiters, 500 kitchen staff and 150 security personnel will assist in managing the event and ensuring the convenience of guests. The celebration will also feature devotional performances dedicated to Radha Rani by renowned artists from Vrindavan, including Kunj Bihari Das Ji Maharaj, Uma Lahari, Sheetal Pandey and Mayank Brijwasi. Local folk artists will also get an opportunity to showcase their talent. Captain Yogesh Bairagi said that the birth of a daughter should be celebrated with the same pride and happiness as the birth of a son. Referring to the &#x27;Beti Bachao, Beti Padhao&#x27; campaign launched from Panipat, he said the family wants to carry forward its message through this initiative and inspire more families to celebrate the birth of daughters. The organisers hope that &#x27;Radha Ka Mangalotsav&#x27; will go beyond a family celebration and emerge as a meaningful social occasion promoting gender equality, respect for daughters and community participation. *This article is for informational purposes only and does not constitute an endorsement of any political party, leader, religious belief, or event. PNN staff is not responsible for the content, including the data and text, and has no role in its selection. The publisher is not liable for any actions taken based on this content. (ADVERTORIAL DISCLAIMER</p><div class="safe-news-meta">indiagazette.com - 23h</div></a><a class="safe-news-card" href="https://www.uniindia.com/north-india/imd-issues-dense-fog-warning-for-haryana-punjab-delhi-road-rail-and-air-traffic-may-be-affected/256374" target="_blank" rel="noopener noreferrer"><h3>IMD issues dense fog warning for Haryana, Punjab, Delhi; road, rail and air traffic may be affected</h3><img src="https://www.uniindia.com/api/v1/news/featured-media/by-path?path=images%2Foriginal%2F33565_1795592833.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Panchkula, Nov 25 (UNI) The India Meteorological Department (IMD) on Wednesday issued a yellow warni</p><div class="safe-news-meta">uniindia.com - 1d</div></a><a class="safe-news-card" href="https://udaipurkiran.com/haryana-weather-update-cold-winds-bring-temperatures-down-dense-fog-yellow-alert-in-five-districts-on-november-26-27/" target="_blank" rel="noopener noreferrer"><h3>Haryana Weather Update: Cold Winds Bring Temperatures Down; Dense Fog Yellow Alert in Five Districts on November 26–27</h3><img src="https://udaipurkiran.com/wp-content/uploads/2026/10/Haryana-Weather.webp" alt="" loading="lazy" referrerpolicy="no-referrer"><p>Chandigarh: Winter conditions are beginning to intensify across Haryana in the final week of November, with cold north and north-westerly winds causing a further decline in night temperatures. The state’s average minimum temperature has dropped by 0.6°C, while nine districts have recorded night temperatures of 10°C or below. Mahendragarh, bordering Rajasthan, recorded the state’s lowest</p><div class="safe-news-meta">udaipurkiran.com - 1d</div></a>
+  </div>
+</section>
+
+            </div>
+        </div>
+    </footer>
+
+    <a id="backToTop" href="#top" class="btn btn-light rounded-pill shadow-sm px-3 py-2" aria-label="Back to top">↑ Top</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var header = document.getElementById("mainHeader");
+        var backToTop = document.getElementById("backToTop");
+        var reveals = document.querySelectorAll('.reveal');
+
+        window.addEventListener("scroll", function() {
+            var scrolled = window.scrollY > 50;
+            header.classList.toggle("scrolled", scrolled);
+            backToTop.style.display = window.scrollY > 600 ? "inline-flex" : "none";
+        });
+
+        if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            reveals.forEach(el => io.observe(el));
+        } else {
+            reveals.forEach(el => el.classList.add('visible'));
+        }
+    });
+    </script>
+
+</body>
+</html>
