@@ -1,3 +1,4 @@
-User-agent: *
+User-agent: AhrefsBot
 Allow: /
+
 Sitemap: https://sparrowspectrum-ftsmhc.stormkit.dev/cloud-links/dmalert1-job-9833-link-13/sitemap.xml
